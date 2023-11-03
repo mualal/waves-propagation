@@ -13,7 +13,7 @@
 
 Дисперсионное соотношение:
 
-$$m \Omega^2=4C\left(\sin^2{\frac{k^xa}{2}}+\sin^2{\frac{k_ya}{2}}\right)$$
+$$m \Omega^2=4C\left(\sin^2{\frac{k^xa}{2}}+\sin^2{\frac{k^ya}{2}}\right)$$
 
 
 (1) Пусть волна распространяется вдоль оси $Ox$, тогда $k^x=k_1$ ($k^y=0$) и
@@ -60,12 +60,15 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 Эффект более заметен при меньшей массе частиц решётки.
 
 При $m=1$:
+
 <img src="gifs/wave-in-homogeneous-lattice-1.gif" width="500">
 
 При $m=0.3$:
+
 <img src="gifs/wave-in-homogeneous-lattice-2.gif" width="500">
 
 Если не задавать в начальном условии (в волновом пакете) экспоненциальное уменьшение амплитуды по оси $Oy$, то тогда волна не закругляется, а только расплывается по оси $Ox$. Компьютерный эксперимент при $m=1$:
+
 <img src="gifs/wave-in-homogeneous-lattice-3.gif" width="500">
 
 ---
