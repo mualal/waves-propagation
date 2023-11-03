@@ -42,7 +42,7 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 
 И при $\Omega=1.6$:
 
-<img srcset="gifs/kinematic-loading-2.gif" width="500">
+<img src="gifs/kinematic-loading-2.gif" width="500">
 
 При $\Omega=1.6$ заметно, что фронт волны образует скруглённый в вершинах квадрат.
 
@@ -60,13 +60,13 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 Эффект более заметен при меньшей массе частиц решётки.
 
 При $m=1$:
-<img srcset="gifs/wave-in-homogeneous-lattice-1.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-1.gif" width="500">
 
 При $m=0.3$:
-<img srcset="gifs/wave-in-homogeneous-lattice-2.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-2.gif" width="500">
 
 Если не задавать в начальном условии (в волновом пакете) экспоненциальное уменьшение амплитуды по оси $Oy$, то тогда волна не закругляется, а только расплывается по оси $Ox$. Компьютерный эксперимент при $m=1$:
-<img srcset="gifs/wave-in-homogeneous-lattice-3.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-3.gif" width="500">
 
 ---
 
@@ -75,7 +75,7 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 Пусть $c=0.75$, $a=2$, $\Omega=1$.
 Эксперимент при прохождении волны из решётки с $m_1=1$ в решётку с $m_2=0.5$:
 
-<img srcset="gifs/wave-at-interface-1.gif" width="500">
+<img src="gifs/wave-at-interface-1.gif" width="500">
 
 Закругления фронта вызваны тем, что волна закругляется и расплывается со временем.
 
