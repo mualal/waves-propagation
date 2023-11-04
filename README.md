@@ -16,47 +16,65 @@
 
 Начальные условия заданы в виде волнового пакета:
 
-$$u_n=u_0\exp{\left(-\frac{\beta^x}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\beta^y}{2}\left(m-m_0\right)^2\right)}\sin{\left(nk_1\right)}$$
+$$
+u_n=u_0\exp{\left(-\frac{\beta^x}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\beta^y}{2}\left(m-m_0\right)^2\right)}\sin{\left(nk_1\right)}
+$$
 
-$$v_0=-u_0\exp{\left(-\frac{\beta^x}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\beta^y}{2}\left(m-m_0\right)^2\right)}\left(\Omega\cos{(nk_1)-\frac{(\beta^x)^2g_1}{a}}\left(n-n_0\right)\sin{(nk_1)}\right),$$
+$$
+v_0=-u_0\exp{\left(-\frac{\beta^x}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\beta^y}{2}\left(m-m_0\right)^2\right)}\left(\Omega\cos{(nk_1)-\frac{(\beta^x)^2g_1}{a}}\left(n-n_0\right)\sin{(nk_1)}\right),
+$$
 
-где $$k_1=\arcsin{\left(\frac{\Omega}{2}\sqrt{\frac{m_1}{C}}\right)\cdot\frac{2}{a}};$$
-$$g_1=a\sqrt{\frac{C}{m_1}}\cos{\left(\frac{k_1a}{2}\right)}$$
+где
+
+$$
+k_1=\arcsin{\left(\frac{\Omega}{2}\sqrt{\frac{m_1}{C}}\right)\cdot\frac{2}{a}};
+$$
+
+$$
+g_1=a\sqrt{\frac{C}{m_1}}\cos{\left(\frac{k_1a}{2}\right)}
+$$
 
 Эффект закругления волны более заметен при меньшей массе частиц решётки.
 
 При $m=1$:
 
-<img src="gifs/wave-in-homogeneous-lattice-1.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-1.gif" width="600">
 
 При $m=0.3$:
 
-<img src="gifs/wave-in-homogeneous-lattice-2.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-2.gif" width="600">
 
 Если не задавать в начальном условии (в волновом пакете) экспоненциальное уменьшение амплитуды по оси $Oy$, то тогда волна не закругляется, а только расплывается по оси $Ox$. Компьютерный эксперимент при $m=1$:
 
-<img src="gifs/wave-in-homogeneous-lattice-3.gif" width="500">
+<img src="gifs/wave-in-homogeneous-lattice-3.gif" width="600">
 
 ---
 
-## Заметка о распространении волн в однородной решётке при кинематической нагрузке 
+## Заметка о распространении волн в однородной решётке при кинематической нагрузке
 
 Дисперсионное соотношение:
 
-$$m \Omega^2=4C\left(\sin^2{\frac{k^xa}{2}}+\sin^2{\frac{k^ya}{2}}\right)$$
-
+$$
+m \Omega^2=4C\left(\sin^2{\frac{k^xa}{2}}+\sin^2{\frac{k^ya}{2}}\right)
+$$
 
 (1) Пусть волна распространяется вдоль оси $Ox$, тогда $k^x=k_1$ ($k^y=0$) и
 
-$$\sin^2{\frac{k_1a}{2}}=\frac{m\Omega^2}{4C}\Rightarrow k_1=\frac{2}{a}\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}$$
+$$
+\sin^2{\frac{k_1a}{2}}=\frac{m\Omega^2}{4C}\Rightarrow k_1=\frac{2}{a}\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}
+$$
 
 (2) Пусть волна распространяется под углом $\pi/4$ к оси $Ox$, тогда $k_x=k_y=\frac{k_2}{\sqrt{2}}$ и 
 
-$$\sin^2{\frac{k_2a}{2\sqrt{2}}}=\frac{m\Omega^2}{8C}\Rightarrow k_2=\frac{2\sqrt{2}}{a}\arcsin{\sqrt{\frac{m\Omega^2}{8C}}}$$
+$$
+\sin^2{\frac{k_2a}{2\sqrt{2}}}=\frac{m\Omega^2}{8C}\Rightarrow k_2=\frac{2\sqrt{2}}{a}\arcsin{\sqrt{\frac{m\Omega^2}{8C}}}
+$$
 
 Таким образом, отношение длин волновых векторов при условиях (1) и (2) запишется в следующем виде:
 
-$$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{\arcsin{\sqrt{\frac{m\Omega^2}{8C}}}}$$
+$$
+\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{\arcsin{\sqrt{\frac{m\Omega^2}{8C}}}}
+$$
 
 Пусть $m=1$, $C=0.75$ и $a=2$, тогда график зависимости отношения длин волновых векторов (при условиях (1) и (2)) в зависимости от $\Omega$ построен в Wolfram Mathematica:
 
@@ -68,11 +86,11 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 
 Проведу численный эксперимент - кинематическое нагружение центральной частицы решётки при $\Omega=1$:
 
-<img src="gifs/kinematic-loading-1.gif" width="500">
+<img src="gifs/kinematic-loading-1.gif" width="600">
 
 И при $\Omega=1.6$:
 
-<img src="gifs/kinematic-loading-2.gif" width="500">
+<img src="gifs/kinematic-loading-2.gif" width="600">
 
 При $\Omega=1.6$ заметно, что фронт волны образует скруглённый в вершинах квадрат.
 
@@ -83,14 +101,15 @@ $$\frac{k_1}{k_2}=\frac{1}{\sqrt{2}}\frac{\arcsin{\sqrt{\frac{m\Omega^2}{4C}}}}{
 ## Волна при прохождении через интерфейс двух решёток
 
 Пусть $C=0.75$, $a=2$, $\Omega=1$.
+
 Эксперимент при прохождении волны из решётки с $m_1=1$ в решётку с $m_2=0.5$:
 
-<img src="gifs/wave-at-interface-1.gif" width="500">
+<img src="gifs/wave-at-interface-1.gif" width="600">
 
-Закругления фронта прошедшей волны вызваны тем, что волна закругляется и расплывается со временем.
+Закругления фронта прошедшей волны вызваны тем, что волна в решётке с меньшими массами закругляется и расплывается со временем быстрее.
 
 ---
 
 ## Вопросы
 
-- Почему со временем происходит закругление и расплытие волнового пакета в однородной решётке?
+- Почему со временем происходит закругление и расплытие волнового пакета в однородной решётке
