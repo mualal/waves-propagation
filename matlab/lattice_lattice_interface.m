@@ -14,10 +14,14 @@ right_y = 100;
 m_1 = 1;
 m_2 = 0.5;
 c = 0.75;
-omega = 1;
+omega = 1.8;
 a = 2;
+gamma = pi/6;
 
-k_1 = asin(omega/2 * sqrt(m_1/c)) * 2 / a;
+%k_1 = asin(omega/2 * sqrt(m_1/c)) * 2 / a;
+
+syms k;
+k_1 = double(vpasolve(m_1*omega^2==4*c*(sin(cos(gamma)*k)^2+sin(sin(gamma)*k)^2), k, 1))*2/a;
 
 num_x = left_x:a:right_x;
 num_y = left_y:a:right_y;
@@ -25,7 +29,7 @@ num_y = left_y:a:right_y;
 mass = zeros(int32((-left_y+right_y)/a),int32((-left_x+right_x)/a));
 for j=1:length(num_x)
     for i=1:length(num_y)
-        if j < -left_x / a
+        if j <= -left_x / a
             mass(i,j) = m_1;
         else
             mass(i,j) = m_2;
@@ -33,13 +37,15 @@ for j=1:length(num_x)
     end
 end
 
-angle_step = 3;
-for j=-int32(left_x/a):length(num_x)
-    for i=angle_step:length(num_y)
-        mass(i,j) = m_1;
-    end
-    angle_step = angle_step + 3;
-end
+% interface slope
+% cur_step = 0;
+% angle_step = 3;
+% for j=-int32(left_x/a):length(num_x)
+%     for i=cur_step+1:length(num_y)
+%         mass(i,j) = m_1;
+%     end
+%     cur_step = cur_step + angle_step;
+% end
 
 % interface coordinates finder
 x_coord = zeros(1,length(num_y)-1);
@@ -58,18 +64,25 @@ end
 disp = zeros(int32((-left_y+right_y+1)/a),int32((-left_x+right_x+1)/a));
 vel = zeros(int32((-left_y+right_y+1)/a),int32((-left_x+right_x+1)/a));
 
-beta_x = 0.07;
-beta_y = 0.07;
-n_0 = -40;
+beta_x = 0.1;
+beta_y = 0.1;
+n_0 = -30;
+v_drift = 25;
 u_0 = 1;
-g_1 = a * sqrt(c/m_1) * cos(k_1*a/2);
+%g_1 = a * sqrt(c/m_1) * cos(k_1*a/2);
+g_1 = sqrt(c/m_1)*(a*cos(gamma)*cos(cos(gamma)*k_1*a/2)*sin(cos(gamma)*k_1*a/2)-a*sin(gamma)*cos(sin(gamma)*k_1*a/2)*sin(sin(gamma)*k_1*a/2))/(sqrt((cos(sin(gamma)*k_1*a/2))^2+(sin(cos(gamma)*k_1*a/2))^2));
 
 for i=1:length(num_x)
     for j=1:length(num_y)
-        disp(j, i) = u_0 * exp(-beta_x^2/2 * (num_x(i) - n_0)^2) * exp(-beta_y^2/2 * (num_y(j))^2);
-        disp(j, i) = disp(j, i) * sin(num_x(i) * k_1);
-        vel(j, i) = -u_0 * exp(-beta_x^2/2 * (num_x(i) - n_0)^2) * exp(-beta_y^2/2 * (num_y(j))^2);
-        vel(j, i) = vel(j, i) * (omega * cos(k_1*(num_x(i))) - beta_x^2*g_1/a*(num_x(i)-n_0)*sin(num_x(i) * k_1));
+        %disp(j, i) = u_0 * exp(-beta_x^2/2 * (num_x(i) - n_0)^2) * exp(-beta_y^2/2 * (num_y(j))^2);
+        %disp(j, i) = disp(j, i) * sin(num_x(i) * k_1);
+        disp(j, i) = u_0 * exp(-beta_x^2/2 * (num_x(i)*cos(gamma)+num_y(j)*sin(gamma)-n_0*cos(gamma)+v_drift)^2);
+        disp(j, i) = disp(j, i) * exp(-beta_y^2/2 * (-num_x(i)*sin(gamma)+num_y(j)*cos(gamma)+n_0*sin(gamma)+v_drift)^2);
+        disp(j, i) = disp(j, i) * sin(k_1*cos(gamma)*num_x(i)+k_1*sin(gamma)*num_y(j));
+        vel(j, i) = -u_0 * exp(-beta_x^2/2 * (num_x(i)*cos(gamma)+num_y(j)*sin(gamma)-n_0*cos(gamma)+v_drift)^2);
+        vel(j, i) = vel(j, i) * exp(-beta_y^2/2 * (-num_x(i)*sin(gamma)+num_y(j)*cos(gamma)+n_0*sin(gamma)+v_drift)^2);
+        vel(j, i) = vel(j, i) * (omega*cos(k_1*cos(gamma)*num_x(i)+k_1*sin(gamma)*num_y(j)) - beta_x^2*g_1/a*(num_x(i)*cos(gamma)+num_y(j)*sin(gamma)-n_0*cos(gamma)+v_drift)*sin(k_1*cos(gamma)*num_x(i)+k_1*sin(gamma)*num_y(j)));
+        %vel(j, i) = vel(j, i) * (omega * cos(k_1*(num_x(i))) - beta_x^2*g_1/a*(num_x(i)-n_0)*sin(num_x(i) * k_1));
     end
 end
 
@@ -131,7 +144,7 @@ l1 = plot3(x_coord/a,y_coord/a,10*ones(1,length(x_coord)),'LineWidth',2,'Color',
 colorbar;
 caxis([-1 1])
 %s1.EdgeColor = 'none';
-view(17,22);
+%view(17,22);
 for i = 1:length(result)
     title('Цветовая карта перемещений в момент времени t = '+string((i-1)*save_time));
     s1.XData = X/a;
@@ -139,7 +152,7 @@ for i = 1:length(result)
     s1.ZData = result{i};
     l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
     if write_video
-        filename = 'wave-at-interface-1.gif';
+        filename = 'wave-with-angle-to-interface-1.gif';
         frame = getframe(2); 
         im = frame2im(frame); 
         [imind,cm] = rgb2ind(im,256); 
