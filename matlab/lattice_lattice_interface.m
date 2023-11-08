@@ -104,32 +104,13 @@ times = 0:dt:t_max;
 
 result = cell(1, fix(t_max/save_time));
 
+% equations of motion integration
 for t=times
     disp_copy = disp;
     %disp(int32(length(num_y)/a), int32(length(num_x)/a)) = sin(omega*t);
     %vel(int32(length(num_y)/a), int32(length(num_x)/a)) = omega*cos(omega*t);
-    for ind_x=1:length(num_x)
-        for ind_y=1:length(num_y)
-            ix_m = ind_x-1;
-            ix_p = ind_x+1;
-            iy_m = ind_y-1;
-            iy_p = ind_y+1;
-            if ind_x == 1
-                ix_m = length(num_x);
-            end
-            if ind_x == length(num_x)
-                ix_p = 1;
-            end
-            if ind_y == 1
-                iy_m = length(num_y);
-            end
-            if ind_y == length(num_y)
-                iy_p = 1;
-            end
-            vel(ind_y,ind_x) = vel(ind_y,ind_x) + c/mass(ind_y, ind_x)*(disp_copy(iy_m, ind_x)+disp_copy(iy_p, ind_x)+disp_copy(ind_y, ix_m)+disp_copy(ind_y, ix_p)-4*disp_copy(ind_y, ind_x))*dt;
-            disp(ind_y, ind_x) = disp(ind_y, ind_x) + vel(ind_y, ind_x) * dt;
-        end
-    end
+    vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
+    disp = disp + vel.*dt;
     if rem(t, save_time) == 0
         result{fix(t/save_time)+1} = disp;
     end     
