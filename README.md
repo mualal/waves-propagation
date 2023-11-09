@@ -19,11 +19,11 @@
 Начальные условия заданы в виде волнового пакета:
 
 $$
-u_n=u_0\exp{\left(-\frac{\left(\beta^x\right)^2}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\left(\beta^y\right)^2}{2}\left(m-m_0\right)^2\right)}\sin{\left(nk_1\right)}
+u_n=u_0\exp{\left(-\frac{\left(\beta^x\right)^2}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\left(\beta^y\right)^2}{2}\left(m-m_0\right)^2\right)}\sin{\left(nk_1a\right)}
 $$
 
 $$
-v_n=-u_0\exp{\left(-\frac{\left(\beta^x\right)^2}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\left(\beta^y\right)^2}{2}\left(m-m_0\right)^2\right)}\left(\Omega\cos{(nk_1)-\frac{(\beta^x)^2g_1}{a}}\left(n-n_0\right)\sin{(nk_1)}\right),
+v_n=-u_0\exp{\left(-\frac{\left(\beta^x\right)^2}{2}\left(n-n_0\right)^2\right)}\exp{\left(-\frac{\left(\beta^y\right)^2}{2}\left(m-m_0\right)^2\right)}\left(\Omega\cos{(nk_1a)-\frac{(\beta^x)^2g_1}{a}}\left(n-n_0\right)\sin{(nk_1a)}\right),
 $$
 
 где
@@ -142,4 +142,12 @@ $$
 
 - Существуют ли углы, при которых волна полностью отражается или полностью проходит через границу двух решёток?
 
+- При $k^x<\frac{\pi}{2a}$  и при $k^x>\frac{\pi}{2a}$ разное поведение волнового пакета, бегущего по однородной решётке?
+
 - 
+
+---
+
+## Наблюдения
+
+- В решётке могут распространяться волны с большей частотой, чем в цепочке (так как есть возможность распространяться под углом к векторам решётки)
