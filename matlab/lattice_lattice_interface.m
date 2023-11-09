@@ -14,9 +14,9 @@ right_y = 100;
 m_1 = 1;
 m_2 = 0.5;
 c = 0.75;
-omega = 1.8;
-a = 2;
-gamma = pi/6;
+omega = 1;
+a = 1;
+gamma = pi/4.5;
 
 %k_1 = asin(omega/2 * sqrt(m_1/c)) * 2 / a;
 
@@ -72,6 +72,7 @@ u_0 = 1;
 %g_1 = a * sqrt(c/m_1) * cos(k_1*a/2);
 g_1 = sqrt(c/m_1)*(a*cos(gamma)*cos(cos(gamma)*k_1*a/2)*sin(cos(gamma)*k_1*a/2)-a*sin(gamma)*cos(sin(gamma)*k_1*a/2)*sin(sin(gamma)*k_1*a/2))/(sqrt((cos(sin(gamma)*k_1*a/2))^2+(sin(cos(gamma)*k_1*a/2))^2));
 
+% initial conditions
 for i=1:length(num_x)
     for j=1:length(num_y)
         %disp(j, i) = u_0 * exp(-beta_x^2/2 * (num_x(i) - n_0)^2) * exp(-beta_y^2/2 * (num_y(j))^2);
@@ -86,7 +87,7 @@ for i=1:length(num_x)
     end
 end
 
-figure; hold on
+figure('Position',[50,50,850,650]); hold on
 [X,Y] = meshgrid(num_x,num_y);
 surf(X/a,Y/a,disp,'FaceAlpha',0.9,'EdgeAlpha',0.5);
 plot3(x_coord/a,y_coord/a,max(max(disp))*ones(1,length(x_coord)),'LineWidth',2,'Color','Black')
@@ -94,6 +95,7 @@ title('Цветовая карта перемещений в момент вре
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 colorbar;
+pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
 view(17,22);
 hold off
 
@@ -116,7 +118,8 @@ for t=times
     end     
 end
 
-figure(2); hold on
+
+figure('Position',[50,50,850,650]); hold on
 s1 = surf(X/a,Y/a,disp,'FaceAlpha',0.9,'EdgeAlpha',0.7);
 title('Цветовая карта перемещений в момент времени t = '+string(t_max));
 xlabel('Номер частицы по оси Ox');
@@ -126,12 +129,13 @@ colorbar;
 caxis([-1 1])
 %s1.EdgeColor = 'none';
 %view(17,22);
+pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
 for i = 1:length(result)
-    title('Цветовая карта перемещений в момент времени t = '+string((i-1)*save_time));
     s1.XData = X/a;
     s1.YData = Y/a;
     s1.ZData = result{i};
     l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
+    title('Цветовая карта перемещений в момент времени t = '+string((i-1)*save_time));
     if write_video
         filename = 'wave-with-angle-to-interface-1.gif';
         frame = getframe(2); 
