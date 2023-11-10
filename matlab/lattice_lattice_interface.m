@@ -1,3 +1,4 @@
+%clc;
 clear;
 
 % time step to save disp
@@ -98,7 +99,6 @@ result = cell(1, fix(t_max/save_time));
 
 % equations of motion integration
 for t=times
-    disp_copy = disp;
     %disp(int32(length(num_y)/a), int32(length(num_x)/a)) = sin(omega*t);
     %vel(int32(length(num_y)/a), int32(length(num_x)/a)) = omega*cos(omega*t);
     vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
