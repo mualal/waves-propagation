@@ -122,9 +122,28 @@ for t=times
         result_vel{fix(t/save_time)+1} = vel;
         result_e{fix(t/save_time)+1} = energy(mass,c,vel,disp);
     end
-    vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
-        circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
-    disp = disp + vel.*dt;
+    
+    % leapfrog synchronized form
+    acc1 = c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+        circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp);
+    disp = disp + vel*dt + 1/2*acc1*dt^2;
+    acc2 = c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+        circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp);
+    vel = vel+1/2*(acc1+acc2)*dt;
+    
+    % leapfrog kick-drift-kick form
+    %acc1 = c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+    %    circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp);
+    %vel_mid = vel + acc1*dt/2;
+    %disp = disp + vel_mid*dt;
+    %acc2 = c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+    %    circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp);
+    %vel = vel_mid + acc2*dt/2;
+    
+    % leapfrog self-made form
+    %vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+    %    circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
+    %disp = disp + vel.*dt;
 end
 
 % set results to show
