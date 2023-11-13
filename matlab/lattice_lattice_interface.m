@@ -1,4 +1,4 @@
-% waves propagation
+% waves propagation (lattice-lattice)
 
 %clc;
 clear;
