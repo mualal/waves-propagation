@@ -104,13 +104,15 @@ for i=1:length(num_x)
 end
 
 disp_initial = disp;
+vel_initial = vel;
 
 
 dt = 0.01;
 t_max = 150;
 times = 0:dt:t_max;
 
-result = cell(1, fix(t_max/save_time));
+result_disp = cell(1, fix(t_max/save_time));
+result_vel = cell(1, fix(t_max/save_time));
 
 % equations of motion integration
 for t=times
@@ -120,7 +122,8 @@ for t=times
         circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
     disp = disp + vel.*dt;
     if rem(t, save_time) == 0
-        result{fix(t/save_time)+1} = disp;
+        result_disp{fix(t/save_time)+1} = disp;
+        result_vel{fix(t/save_time)+1} = vel;
     end     
 end
 
@@ -128,10 +131,10 @@ end
 f1 = figure(1); hold on
 f1.Position = [50,50,750,650];
 [X,Y] = meshgrid(num_x,num_y);
-surf(X,Y,disp_initial,'FaceAlpha',0.9,'EdgeAlpha',0.5);
-plot3(x_coord,y_coord,max(max(disp_initial))*ones(1,length(x_coord)),...
+surf(X,Y,vel_initial,'FaceAlpha',0.9,'EdgeAlpha',0.5);
+plot3(x_coord,y_coord,max(max(vel_initial))*ones(1,length(x_coord)),...
     'LineWidth',2,'Color','Black')
-title('Цветовая карта перемещений в момент времени t = 0');
+title('Цветовая карта скоростей в момент времени t = 0');
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 colorbar;
@@ -143,8 +146,8 @@ hold off
 
 f2=figure(2); hold on
 f2.Position = [50,50,750,650];
-s1 = surf(X,Y,disp,'FaceAlpha',0.9,'EdgeAlpha',0.7);
-title('Цветовая карта перемещений в момент времени t = '+string(t_max));
+s1 = surf(X,Y,vel/(a*omega),'FaceAlpha',0.9,'EdgeAlpha',0.7);
+title('Цветовая карта скоростей в момент времени t = '+string(t_max));
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 l1 = plot3(x_coord,y_coord,10*ones(1,length(x_coord)),'LineWidth',2,...
@@ -152,15 +155,15 @@ l1 = plot3(x_coord,y_coord,10*ones(1,length(x_coord)),'LineWidth',2,...
 colorbar;
 caxis([-1 1])
 %s1.EdgeColor = 'none';
-%view(17,22);
+view(17,22);
 axis([num_x(1) num_x(end) num_y(1) num_y(end)])
 pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
-for i = 1:length(result)
+for i = 1:length(result_vel)
     s1.XData = X;
     s1.YData = Y;
-    s1.ZData = result{i};
-    l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
-    title('Цветовая карта перемещений в момент времени t = '+...
+    s1.ZData = result_vel{i}/(a*omega);
+    l1.ZData = max(max(result_vel{i}))/(a*omega)*ones(1,length(x_coord));
+    title('Цветовая карта скоростей в момент времени t = '+...
         string((i-1)*save_time));
     if write_video
         filename = 'new-test-1.gif';
