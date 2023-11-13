@@ -167,7 +167,7 @@ label = "перемещений";
 if strcmp(plot_var,'vel')
     temp = cell2mat(result_vel)./(a*omega);
     result = mat2cell(temp, length(num_y),...
-        (repmat(length(num_y),1,length(result_vel))));
+        (repmat(length(num_x),1,length(result_vel))));
     %for i=1:length(result_vel)
     %    result{i} = result_vel{i} ./ (a * omega);
     %end
@@ -192,6 +192,8 @@ ylabel('Номер частицы по оси Oy');
 colorbar;
 axis([num_x(1) num_x(end) num_y(1) num_y(end)])
 pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
+ax = gca;
+ax.Clipping = "off";
 view(17,22);
 hold off
 
@@ -212,6 +214,8 @@ colorbar;
 view(17,22);
 axis([num_x(1) num_x(end) num_y(1) num_y(end)])
 pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
+ax = gca;
+ax.Clipping = "off";
 for i = 1:length(result)
     s1.XData = X;
     s1.YData = Y;
@@ -242,10 +246,10 @@ f3.Position = [50,50,750,650];
 plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x)),result_e,...
     'UniformOutput',false)),'LineWidth',1.7,'Color','Black')
 plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x(1:end,...
-    1:floor(end/2)))),result_e,'UniformOutput',false)),'LineWidth',1,...
+    1:-left_x))),result_e,'UniformOutput',false)),'LineWidth',1,...
     'Color','Blue')
 plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x(1:end,...
-    ceil(end/2):end))),result_e,'UniformOutput',false)),'LineWidth',1,...
+    -left_x+1:right_x-left_x+1))),result_e,'UniformOutput',false)),'LineWidth',1,...
     'Color','Red')
 title('Зависимость энергий в системе от времени');
 xlabel('Время, усл.ед.');
@@ -259,10 +263,10 @@ end
 
 if strcmp(plot_var,'energy') && energy_monitor
 e_sum = cell2mat(cellfun(@(x) sum(sum(x)),result_e,'UniformOutput',false));
-e_l = cell2mat(cellfun(@(x) sum(sum(x(1:end,1:floor(end/2)))),result_e,...
+e_l = cell2mat(cellfun(@(x) sum(sum(x(1:end,1:-left_x))),result_e,...
     'UniformOutput',false));
-e_r = cell2mat(cellfun(@(x) sum(sum(x(1:end,ceil(end/2):end))),result_e,...
-    'UniformOutput',false));
+e_r=cell2mat(cellfun(@(x) sum(sum(x(1:end,-left_x+1:right_x-left_x+1))),...
+    result_e,'UniformOutput',false));
 f2=figure(2); hold on
 f2.Position = [0,50,1400,650];
 til = tiledlayout(1,2,'TileSpacing','Compact');
@@ -280,6 +284,8 @@ colorbar;
 %view(17,22);
 axis([num_x(1) num_x(end) num_y(1) num_y(end)])
 pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
+ax = gca;
+ax.Clipping = "off";
 hold off
 nexttile; hold on
 p1=plot(0,e_sum(1),'LineWidth',1.7,'Color','Black');
