@@ -4,6 +4,7 @@ clear;
 % time step to save disp
 save_time = 3;
 write_video = false;
+plot_var = 'energy';
 
 % lattice geometry boundaries
 left_x = -100;
@@ -103,38 +104,55 @@ for i=1:length(num_x)
     end
 end
 
-disp_initial = disp;
-vel_initial = vel;
-
 
 dt = 0.01;
 t_max = 150;
 times = 0:dt:t_max;
 
-result_disp = cell(1, fix(t_max/save_time));
-result_vel = cell(1, fix(t_max/save_time));
+result_disp = cell(1, fix(t_max/save_time)+1);
+result_vel = cell(1, fix(t_max/save_time)+1);
+result_e = cell(1, fix(t_max/save_time)+1);
 
 % equations of motion integration
 for t=times
     %disp(int32(length(num_y)/a), int32(length(num_x)/a)) = sin(omega*t);
     %vel(int32(length(num_y)/a),int32(length(num_x)/a))=omega*cos(omega*t);
-    vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
-        circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
-    disp = disp + vel.*dt;
     if rem(t, save_time) == 0
         result_disp{fix(t/save_time)+1} = disp;
         result_vel{fix(t/save_time)+1} = vel;
-    end     
+        result_e{fix(t/save_time)+1} = energy(mass,c,vel,disp);
+    end
+    vel = vel + c./mass.*(circshift(disp,[-1 0])+circshift(disp,[1 0])+...
+        circshift(disp,[0 -1])+circshift(disp,[0 1])-4*disp).*dt;
+    disp = disp + vel.*dt;
+end
+
+% set results to show
+result = result_disp;
+label = "перемещений";
+if strcmp(plot_var,'vel')
+    temp = cell2mat(result_vel)./(a*omega);
+    result = mat2cell(temp, length(num_y),...
+        (repmat(length(num_y),1,length(result_vel))));
+    %for i=1:length(result_vel)
+    %    result{i} = result_vel{i} ./ (a * omega);
+    %end
+    %result = result_vel;
+    label = "скоростей";
+end
+if strcmp(plot_var,'energy')
+    result = result_e;
+    label = "энергий";
 end
 
 
 f1 = figure(1); hold on
 f1.Position = [50,50,750,650];
 [X,Y] = meshgrid(num_x,num_y);
-surf(X,Y,vel_initial,'FaceAlpha',0.9,'EdgeAlpha',0.5);
-plot3(x_coord,y_coord,max(max(vel_initial))*ones(1,length(x_coord)),...
+surf(X,Y,result{1},'FaceAlpha',0.9,'EdgeAlpha',0.5);
+plot3(x_coord,y_coord,max(max(result{1}))*ones(1,length(x_coord)),...
     'LineWidth',2,'Color','Black')
-title('Цветовая карта скоростей в момент времени t = 0');
+title('Цветовая карта '+label+' в момент времени t = 0');
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 colorbar;
@@ -146,24 +164,25 @@ hold off
 
 f2=figure(2); hold on
 f2.Position = [50,50,750,650];
-s1 = surf(X,Y,vel/(a*omega),'FaceAlpha',0.9,'EdgeAlpha',0.7);
-title('Цветовая карта скоростей в момент времени t = '+string(t_max));
+s1 = surf(X,Y,result{end},'FaceAlpha',0.9,'EdgeAlpha',0.7);
+title('Цветовая карта '+label+' в момент времени t = '+string(t_max));
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 l1 = plot3(x_coord,y_coord,10*ones(1,length(x_coord)),'LineWidth',2,...
     'Color','Black');
 colorbar;
-caxis([-1 1])
+%caxis([-1 1])
+%caxis([-min(min(cell2mat(result))) max(max(cell2mat(result)))])
 %s1.EdgeColor = 'none';
 view(17,22);
 axis([num_x(1) num_x(end) num_y(1) num_y(end)])
 pbaspect([1,(right_y-left_y)/(right_x-left_x),1]);
-for i = 1:length(result_vel)
+for i = 1:length(result)
     s1.XData = X;
     s1.YData = Y;
-    s1.ZData = result_vel{i}/(a*omega);
-    l1.ZData = max(max(result_vel{i}))/(a*omega)*ones(1,length(x_coord));
-    title('Цветовая карта скоростей в момент времени t = '+...
+    s1.ZData = result{i};
+    l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
+    title('Цветовая карта '+label+' в момент времени t = '+...
         string((i-1)*save_time));
     if write_video
         filename = 'new-test-1.gif';
@@ -181,3 +200,20 @@ for i = 1:length(result_vel)
 end
 hold off
 
+
+f3=figure(3); hold on
+f3.Position = [50,50,750,650];
+plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x)),result_e,...
+    'UniformOutput',false)),'LineWidth',1,'Color','Blue')
+title('Зависимость полной энергии системы от времени');
+xlabel('Время, усл.ед.');
+ylabel('Энергия, усл.ед.');
+grid on;
+grid minor;
+
+
+function e = energy(m,c,vel,disp)
+    e = m./2 .* vel.^2 + c/4 * (circshift(disp,[-1 0])+...
+        circshift(disp,[1 0])+circshift(disp,[0 -1])+...
+        circshift(disp,[0 1])-4*disp).^2;
+end
