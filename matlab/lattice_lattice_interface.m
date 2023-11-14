@@ -179,6 +179,8 @@ if strcmp(plot_var,'energy')
     label = "энергий";
 end
 
+descr_str = sprintf("\n (m_1=%.1f;   m_2=%.1f;   c=%.3f;   a=%.1f;"+...
+    "   gamma=%.3f^o;   omega=%f)",m_1,m_2,c,a,gamma*180/pi,omega);
 
 f1 = figure(1); hold on
 f1.Position = [50,50,750,650];
@@ -186,7 +188,7 @@ f1.Position = [50,50,750,650];
 surf(X,Y,result{1},'FaceAlpha',0.9,'EdgeAlpha',0.5);
 plot3(x_coord,y_coord,max(max(result{1}))*ones(1,length(x_coord)),...
     'LineWidth',2,'Color','Black')
-title('Цветовая карта '+label+' в момент времени t = 0');
+title('Цветовая карта '+label+' в момент времени t = 0'+descr_str);
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 colorbar;
@@ -202,7 +204,8 @@ if ~strcmp(plot_var,'energy')||(strcmp(plot_var,'energy')&&~energy_monitor)
 f2=figure(2); hold on
 f2.Position = [50,50,750,650];
 s1 = surf(X,Y,result{end},'FaceAlpha',0.9,'EdgeAlpha',0.7);
-title('Цветовая карта '+label+' в момент времени t = '+string(t_max));
+title("Цветовая карта "+label+" в момент времени t = "+string(t_max)+...
+    descr_str);
 xlabel('Номер частицы по оси Ox');
 ylabel('Номер частицы по оси Oy');
 l1 = plot3(x_coord,y_coord,10*ones(1,length(x_coord)),'LineWidth',2,...
@@ -222,7 +225,7 @@ for i = 1:length(result)
     s1.ZData = result{i};
     l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
     title('Цветовая карта '+label+' в момент времени t = '+...
-        string((i-1)*save_time));
+        string((i-1)*save_time)+descr_str);
     if write_gif
         filename = gif_filename;
         frame = getframe(2); 
@@ -251,7 +254,7 @@ plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x(1:end,...
 plot(0:save_time:t_max,cell2mat(cellfun(@(x) sum(sum(x(1:end,...
     -left_x+1:right_x-left_x+1))),result_e,'UniformOutput',false)),...
     'LineWidth',1,'Color','Red')
-title('Зависимость энергий в системе от времени');
+title("Зависимость энергий в системе от времени"+descr_str);
 xlabel('Время, усл.ед.');
 ylabel('Энергия, усл.ед.');
 legend('Полная энергия системы', 'Энергия левой решётки',...
@@ -300,7 +303,7 @@ legend('Полная энергия системы', 'Энергия левой 
 grid on;
 grid minor;
 hold off
-til_t = title(til, 'Энергия в момент времени t=0');
+til_t = title(til, "Энергия в момент времени t=0"+descr_str);
 til_t.FontWeight = 'bold';
 for i = 1:length(result)
     set(p1,'XData',(0:i-1)*save_time);
@@ -314,7 +317,8 @@ for i = 1:length(result)
     s1.YData = Y;
     s1.ZData = result{i};
     l1.ZData = max(max(result{i}))*ones(1,length(x_coord));
-    title(til, 'Энергия в момент времени t = '+string((i-1)*save_time));
+    title(til, "Энергия в момент времени t = "+string((i-1)*save_time)+...
+        descr_str);
     if write_gif
         filename = gif_filename;
         frame = getframe(2); 
