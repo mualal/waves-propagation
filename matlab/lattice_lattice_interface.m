@@ -294,7 +294,7 @@ nexttile; hold on
 p1=plot(0,e_sum(1),'LineWidth',1.7,'Color','Black');
 p2=plot(0,e_l(1),'LineWidth',1,'Color','Blue');
 p3=plot(0,e_r(1),'LineWidth',1,'Color','Red');
-ylim([min([e_sum, e_l, e_r]) 1.1*max([e_sum, e_l, e_r])])
+ylim([min([e_sum, e_l, e_r]) 1.15*max([e_sum, e_l, e_r])])
 title('Зависимость суммарных энергий в системе от времени');
 xlabel('Время, усл.ед.');
 ylabel('Энергия, усл.ед.');
@@ -338,7 +338,7 @@ end
 
 
 function e = energy(m,c,vel,disp)
-    e = m./2 .* vel.^2 + c/4 * (circshift(disp,[-1 0])+...
-        circshift(disp,[1 0])+circshift(disp,[0 -1])+...
-        circshift(disp,[0 1])-4*disp).^2;
+    e = m./2 .* vel.^2 + c/4 * ((circshift(disp,[-1 0])-disp).^2+...
+        (circshift(disp,[1 0])-disp).^2+...
+        (circshift(disp,[0 -1])-disp).^2+(circshift(disp,[0 1])-disp).^2);
 end
