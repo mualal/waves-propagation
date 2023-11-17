@@ -24,8 +24,6 @@
 
 <img src="gifs/02_interface_zero_stiffness.gif">
 
-
-
 ## Мысленный эксперимент. Волна падает на интерфейс двух решёток под углом
 
 Из дисперсионного соотношения:
@@ -110,3 +108,21 @@ $$
 - Сделать возможность вывода на график (монитор энергий) значения с произвольным шагом по времени (сейчас дробные шаги могут выдавать ошибку)
 
 - 
+
+---
+
+---
+
+LaTeX formulas are rendered by MathJax.
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+    }
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">  
+</script>
