@@ -18,27 +18,34 @@ gif_delay = 0.3;
 left_x = -400;
 right_x = 600;
 
-% input parameters
+% chain-chain parameters
 m_1 = 1.0;
 m_2 = 0.5;
 c_1 = 1.0;
 c_2 = 1.0;
-c_12 = 4.0;
+c_12 = 3.0;
 d_1 = 0;
 d_2 = 0;
-omega = 1;
 a = 1;
+
+% wave packet parameters
+omega = 1;
+beta = 0.03;
+n_0 = -150;
+u_0 = 1;
 
 % integration parameters
 dt = 0.005;
 t_max = 350;
 
+fprintf("Input Omega: %.5f.\n\n",omega)
+fprintf("Min Omega Chain 1: %.5f.\n", sqrt(d_1/m_1));
+fprintf("Max Omega Chain 1: %.5f.\n\n", sqrt((4*c_1+d_1)/m_1));
+fprintf("Min Omega Chain 2: %.5f.\n", sqrt(d_2/m_2));
+fprintf("Max Omega Chain 2: %.5f.\n", sqrt((4*c_2+d_2)/m_2));
+
 
 %% Initial Conditions
-
-u_0 = 1;
-n_0 = -150;
-beta = 0.03;
 
 num = round((left_x:a:right_x)/a);
 m = cat(2,m_1*ones(1,sum(num<0)),m_2*ones(1,sum(num>=0)));
@@ -46,13 +53,13 @@ c = cat(2,c_1*ones(1,sum(num<-1)),c_12*ones(1,sum(num==-1)),...
     c_2*ones(1,sum(num>-1)));
 d = cat(2,d_1*ones(1,sum(num<0)),d_2*ones(1,sum(num>=0)));
 
-k_1 = asin(sqrt(m*(omega.^2-d/m)./(4.*c)))*2/a;
-g_1 = a/(2*omega)*sqrt((omega^2-d./m).*((4.*c+d)./m-omega.^2));
+k_1 = asin(sqrt(m.*(omega.^2-d./m)./(4.*c))).*2./a;
+g_1 = a./(2.*omega).*sqrt((omega^2-d./m).*((4.*c+d)./m-omega.^2));
 
-disp=u_0.*exp(-beta^2/2.*(num-n_0).^2).*sin(num.*a.*k_1);
+disp=u_0.*exp(-beta^2./2.*(num-n_0).^2).*sin(num.*a.*k_1);
 disp(num>=-1)=0;
 
-vel=-u_0.*exp(-beta^2/2.*(num-n_0).^2).*...
+vel=-u_0.*exp(-beta^2./2.*(num-n_0).^2).*...
     (omega.*cos(k_1.*a.*num)-beta^2.*g_1./a.*(num-n_0).*sin(num.*a.*k_1));
 vel(num>=-1)=0;
 
@@ -106,6 +113,9 @@ e_l = cell2mat(cellfun(@(x) sum(x(1:end,1:sum(num<0))),result_e,...
     'UniformOutput',false));
 e_r = cell2mat(cellfun(@(x) sum(x(1:end,sum(num<=0):length(num))),...
     result_e,'UniformOutput',false));
+e_l = e_l / max(e_sum);
+e_r = e_r / max(e_sum);
+e_sum = e_sum / max(e_sum);
 f2=figure(2); hold on
 f2.Position = [0,50,1400,650];
 til = tiledlayout(1,2,'TileSpacing','Compact');
