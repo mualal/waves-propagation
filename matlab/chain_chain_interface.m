@@ -53,14 +53,14 @@ c = cat(2,c_1*ones(1,sum(num<-1)),c_12*ones(1,sum(num==-1)),...
     c_2*ones(1,sum(num>-1)));
 d = cat(2,d_1*ones(1,sum(num<0)),d_2*ones(1,sum(num>=0)));
 
-k_1 = asin(sqrt(m.*(omega.^2-d./m)./(4.*c))).*2./a;
-g_1 = a./(2.*omega).*sqrt((omega^2-d./m).*((4.*c+d)./m-omega.^2));
+k_1 = asin(sqrt(m.*(omega.^2-d./m)./(4*c)))*2/a;
+g_1 = a/(2*omega)*sqrt((omega^2-d./m).*((4*c+d)./m-omega.^2));
 
-disp=u_0.*exp(-beta^2./2.*(num-n_0).^2).*sin(num.*a.*k_1);
+disp=u_0*exp(-beta^2/2*(num-n_0).^2).*sin(num.*k_1*a);
 disp(num>=-1)=0;
 
-vel=-u_0.*exp(-beta^2./2.*(num-n_0).^2).*...
-    (omega.*cos(k_1.*a.*num)-beta^2.*g_1./a.*(num-n_0).*sin(num.*a.*k_1));
+vel=-u_0*exp(-beta^2/2*(num-n_0).^2).*...
+    (omega*cos(num.*k_1*a)-beta^2*g_1/a.*(num-n_0).*sin(num.*k_1*a));
 vel(num>=-1)=0;
 
 
@@ -80,10 +80,10 @@ for t=times
     end
     acc1=(c./m).*(circshift(disp,-1)-disp)+(circshift(c,1)./m).*...
         (circshift(disp,1)-disp)-d./m.*disp;
-    disp=disp+vel.*dt+1/2.*acc1.*dt^2;
+    disp=disp+vel*dt+1/2*acc1*dt^2;
     acc2=(c./m).*(circshift(disp,-1)-disp)+(circshift(c,1)./m).*...
         (circshift(disp,1)-disp)-d./m.*disp;
-    vel=vel+1/2.*(acc1+acc2).*dt;
+    vel=vel+1/2*(acc1+acc2)*dt;
 end
 
 
@@ -178,7 +178,7 @@ hold off
 %% Energy Function
 
 function e = energy(m,c,d,vel,disp)
-    e = m./2 .* vel.^2 + c / 4 .* (circshift(disp,-1)-disp).^2 + ...
+    e = m / 2 .* vel.^2 + c / 4 .* (circshift(disp,-1)-disp).^2 + ...
         circshift(c,1) / 4 .* (circshift(disp,1)-disp).^2 + ...
         d / 2 .* disp.^2;
 end
