@@ -1,0 +1,141 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lattice Dispersion Relation", \
+"Section",ExpressionUUID->"227f742f-ce7d-43af-b8b2-b637b38149a2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{
+    RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+    RowBox[{"CellEpilog", ":>", 
+     RowBox[{"SelectionMove", "[", 
+      RowBox[{
+       RowBox[{"NextCell", "[", 
+        RowBox[{"CellStyle", "->", "\"\<Input\>\""}], "]"}], ",", "All", ",", 
+       "Cell"}], "]"}]}]}], "]"}], ";"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"06853a03-8b72-4f25-9a59-cc889ede8c7e"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"78d75c18-7ccd-41dc-a521-ae3b28866e14"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"temp1", ",", " ", "temp2"}], "}"}], "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"m", " ", 
+      SuperscriptBox["\[Omega]", "2"]}], "==", 
+     RowBox[{"4", "*", "c", "*", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{" ", 
+             RowBox[{"a", " ", 
+              SubscriptBox["k", "x"]}]}], "2"], "]"}], ")"}], "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"a", " ", 
+             SubscriptBox["k", "y"]}], "2"], "]"}], ")"}], "2"]}], ")"}]}]}], 
+    ",", "\[Omega]"}], "]"}]}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"27a2eff6-2cba-4827-bbd0-03abebd726da"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[CapitalOmega]", ":=", " ", 
+   RowBox[{"\[Omega]", "/.", "temp2"}]}], ";"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"8b24b7f9-7bd8-4091-acd0-8cda6ed6b18e"],
+
+Cell[BoxData["\[CapitalOmega]"], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"4c71f23b-e6df-449e-acab-f01d4d28024e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"m", "=", "1"}], ";", 
+  RowBox[{"c", "=", "0.75"}], ";", 
+  RowBox[{"a", "=", "1"}], ";"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"31fe15f3-f7c3-4210-9875-39b9c0988c3d"],
+
+Cell[BoxData[
+ RowBox[{"ContourPlot", "[", 
+  RowBox[{"\[CapitalOmega]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["k", "x"], ",", " ", 
+     RowBox[{
+      RowBox[{"-", "\[Pi]"}], "/", "a"}], ",", " ", 
+     RowBox[{"\[Pi]", "/", "a"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["k", "y"], ",", " ", 
+     RowBox[{
+      RowBox[{"-", "\[Pi]"}], "/", "a"}], ",", " ", 
+     RowBox[{"\[Pi]", "/", "a"}]}], "}"}], ",", 
+   RowBox[{"PlotLegends", "->", "Automatic"}]}], "]"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"9f50ac2a-5e0d-4a6a-b77d-ac852c853200"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"2", " ", 
+       SqrtBox[
+        RowBox[{
+         RowBox[{"c", " ", 
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{"a", " ", 
+              SubscriptBox["k", "x"]}], "2"], "]"}], "2"]}], "+", 
+         RowBox[{"c", " ", 
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{"a", " ", 
+              SubscriptBox["k", "y"]}], "2"], "]"}], "2"]}]}]]}], 
+      SqrtBox["m"]], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["k", "x"], ",", " ", 
+       RowBox[{
+        RowBox[{"-", "\[Pi]"}], "/", "a"}], ",", " ", 
+       RowBox[{"\[Pi]", "/", "a"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["k", "y"], ",", " ", 
+       RowBox[{
+        RowBox[{"-", "\[Pi]"}], "/", "a"}], ",", 
+       RowBox[{"\[Pi]", "/", "a"}]}], "}"}], ",", 
+     RowBox[{"PlotLegends", "->", "Automatic"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"m", ",", " ", "1", ",", "5"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"c", ",", "0.75", ",", "3"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "1", ",", "4"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"545d4bf3-114b-4693-832e-501fd38bf505"]
+}, Open  ]]
+},
+WindowSize->{808, 718},
+WindowMargins->{{265, Automatic}, {Automatic, 28}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TaggingRules-><|"TryRealOnly" -> False|>,
+CellEpilog:>SelectionMove[
+  NextCell[CellStyle -> "Input"], All, Cell],
+TrackCellChangeTimes->False,
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"78e9b7e8-470a-4852-90ed-8f168cedfa2c"
+]
+
