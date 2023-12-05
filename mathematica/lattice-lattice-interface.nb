@@ -125,10 +125,206 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{"a", ",", "1", ",", "4"}], "}"}]}], "]"}]], "Input",
  CellLabel->"In[8]:=",ExpressionUUID->"545d4bf3-114b-4693-832e-501fd38bf505"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Explore analytical solution for transmission coefficient", \
+"Section",ExpressionUUID->"fb47dbca-729f-482e-99f2-19a4f49b9362"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{
+    RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+    RowBox[{"CellEpilog", ":>", 
+     RowBox[{"SelectionMove", "[", 
+      RowBox[{
+       RowBox[{"NextCell", "[", 
+        RowBox[{"CellStyle", "->", "\"\<Input\>\""}], "]"}], ",", "All", ",", 
+       "Cell"}], "]"}]}]}], "]"}], ";"}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"be8594c9-29af-47de-9fff-83400e537289"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"fe7daa80-d939-4419-8f11-dc9d2af737b8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"m1", ":=", "1.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"m2", ":=", "0.5"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"c", ":=", "1.0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", ":=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalOmega]", ":=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Gamma]", ":=", "0"}], ";"}]}], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"d099bdf6-edb9-407f-baaf-2b8c3804cee8"],
+
+Cell["\<\
+Find wave number (in lattice 1) that corresponds to given frequency \
+\[CapitalOmega] and angle \[Gamma].\
+\>", "Text",ExpressionUUID->"221134c5-8d02-4902-a80d-a1fa28cad184"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"k1", ":=", 
+   RowBox[{"k", "/.", 
+    RowBox[{"FindRoot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"m1", "*", 
+        SuperscriptBox["\[CapitalOmega]", "2"]}], "-", 
+       RowBox[{"4", "*", "c", "*", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{
+              RowBox[{"Cos", "[", "\[Gamma]", "]"}], "*", "k", "*", "a"}], 
+             "2"], "]"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{
+              RowBox[{"Sin", "[", "\[Gamma]", "]"}], "*", "k", "*", "a"}], 
+             "2"], "]"}], "2"]}], ")"}]}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "0.5"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k1x", ":=", 
+   RowBox[{"k1", "*", 
+    RowBox[{"Cos", "[", "\[Gamma]", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k1y", ":=", 
+   RowBox[{"k1", "*", 
+    RowBox[{"Sin", "[", "\[Gamma]", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", "k1"}], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"4f115f28-0183-4854-9755-07500b7a2bb9"],
+
+Cell["Find wave number (in lattice 2) using Snell\[CloseCurlyQuote]s law.", \
+"Text",ExpressionUUID->"9dacaf98-faa6-4e49-978a-ee55add01770"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"k2y", ":=", "k1y"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k2x", ":=", 
+   RowBox[{"k", "/.", 
+    RowBox[{"FindRoot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"m2", "*", 
+        SuperscriptBox["\[CapitalOmega]", "2"]}], "==", 
+       RowBox[{"4", "*", "c", "*", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{"k", "*", "a"}], "2"], "]"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{"Sin", "[", 
+            FractionBox[
+             RowBox[{"k2y", "*", "a"}], "2"], "]"}], "2"]}], ")"}]}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "0.5"}], "}"}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"k2", ":=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{
+     SuperscriptBox["k2x", "2"], "+", 
+     SuperscriptBox["k2y", "2"]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Zeta]", ":=", 
+   RowBox[{"ArcTan", "[", 
+    RowBox[{"k2y", "/", "k2x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", "k2"}], "Input",
+ CellLabel->"In[13]:=",ExpressionUUID->"258fe13d-115b-433b-aa11-d4b4c24b28ea"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g1x", ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", "*", "c"}], 
+     RowBox[{"\[CapitalOmega]", "*", "m1"}]], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"k1x", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g1y", ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", "*", "c"}], 
+     RowBox[{"\[CapitalOmega]", "*", "m1"}]], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"k1y", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g1", ":=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{
+     SuperscriptBox["g1x", "2"], "+", 
+     SuperscriptBox["g1y", "2"]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2x", ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", "*", "c"}], 
+     RowBox[{"\[CapitalOmega]", "*", "m2"}]], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"k2x", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2y", ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"a", "*", "c"}], 
+     RowBox[{"\[CapitalOmega]", "*", "m2"}]], "*", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"k2y", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2", ":=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{
+     SuperscriptBox["g2x", "2"], "+", 
+     SuperscriptBox["g2y", "2"]}], "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[18]:=",ExpressionUUID->"0c460741-521d-41b9-ae17-2f4f77847665"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T", ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"m2", "*", "g2x"}], 
+     RowBox[{"m1", "*", "g1x"}]], "*", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{"Abs", "[", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", "*", "k1x", "*", "a"}]], "-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"-", "\[ImaginaryI]"}], "*", "k1x", "*", "a"}]]}], 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"\[ImaginaryI]", "*", "k2x", "*", "a"}]], "-", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"-", "\[ImaginaryI]"}], "*", "k1x", "*", "a"}]]}]], "]"}], 
+      ")"}], "2"]}]}], ";"}], "\[IndentingNewLine]", "T"}], "Input",
+ CellLabel->
+  "In[24]:=",ExpressionUUID->"0e942859-b694-4a8e-9ecc-8440372d21f1"]
 }, Open  ]]
 },
-WindowSize->{808, 718},
-WindowMargins->{{265, Automatic}, {Automatic, 28}},
+WindowSize->{979, 718},
+WindowMargins->{{161, Automatic}, {Automatic, 37}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TaggingRules-><|"TryRealOnly" -> False|>,
 CellEpilog:>SelectionMove[
