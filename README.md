@@ -1,6 +1,6 @@
 # Распространение волн в неоднородных дискретных средах
 
-Ссылка на общий pdf-файл с результатами (аналитическое решение; сравнение с численным решением): [CURRENT RESULTS](https://mualal.github.io/waves-propagation/main.pdf).
+PDF-файл с аналитическим решением: [ANALYTICAL EXPRESSIONS](https://mualal.github.io/waves-propagation/main.pdf).
 
 Код на Python для цепочек: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mualal/waves-propagation/blob/master/python/chain-chain-interface.ipynb)
 

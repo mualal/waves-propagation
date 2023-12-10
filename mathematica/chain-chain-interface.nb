@@ -15,11 +15,11 @@ Cell[BoxData[
        RowBox[{"NextCell", "[", 
         RowBox[{"CellStyle", "->", "\"\<Input\>\""}], "]"}], ",", "All", ",", 
        "Cell"}], "]"}]}]}], "]"}], ";"}]], "Input",
- CellLabel->"In[1]:=",ExpressionUUID->"f2dc6d6d-df04-498b-9295-85a257445e37"],
+ CellLabel->"In[94]:=",ExpressionUUID->"f2dc6d6d-df04-498b-9295-85a257445e37"],
 
 Cell[BoxData[
  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
- CellLabel->"In[2]:=",ExpressionUUID->"e35c866c-4b23-4ca6-a732-a267f46e3a19"],
+ CellLabel->"In[95]:=",ExpressionUUID->"e35c866c-4b23-4ca6-a732-a267f46e3a19"],
 
 Cell[BoxData[{
  RowBox[{
@@ -38,38 +38,33 @@ Cell[BoxData[{
   RowBox[{"a", ":=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"\[CapitalOmega]", ":=", "1"}], ";"}]}], "Input",
- CellLabel->"In[3]:=",ExpressionUUID->"91322149-d3f0-4ffa-af92-11bf5874d479"],
+ CellLabel->"In[96]:=",ExpressionUUID->"91322149-d3f0-4ffa-af92-11bf5874d479"],
 
 Cell[BoxData[{
  RowBox[{
   RowBox[{"k1", ":=", 
    RowBox[{
-    RowBox[{"2", "/", "a"}], "*", 
+    FractionBox["2", "a"], "*", 
     RowBox[{"ArcSin", "[", 
-     RowBox[{"Sqrt", "[", 
-      RowBox[{
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"m1", "*", 
-          SuperscriptBox["\[CapitalOmega]", "2"]}], "-", "d1"}], ")"}], "/", 
-       RowBox[{"(", 
-        RowBox[{"4", "*", "c1"}], ")"}]}], "]"}], "]"}]}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     SqrtBox[
+      FractionBox[
+       RowBox[{
+        RowBox[{"m1", "*", 
+         SuperscriptBox["\[CapitalOmega]", "2"]}], "-", "d1"}], 
+       RowBox[{"4", "*", "c1"}]]], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"k2", " ", ":=", " ", 
    RowBox[{
-    RowBox[{"2", "/", "a"}], "*", 
+    FractionBox["2", "a"], "*", 
     RowBox[{"ArcSin", "[", 
-     RowBox[{"Sqrt", "[", 
-      RowBox[{
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"m2", "*", 
-          SuperscriptBox["\[CapitalOmega]", "2"]}], "-", "d2"}], ")"}], "/", 
-       RowBox[{"(", 
-        RowBox[{"4", "*", "c2"}], ")"}]}], "]"}], "]"}]}]}], ";"}]}], "Input",
- 
- CellLabel->"In[11]:=",ExpressionUUID->"9a5cf24a-3ef6-4274-95fc-196bc83fcc54"],
+     SqrtBox[
+      FractionBox[
+       RowBox[{
+        RowBox[{"m2", "*", 
+         SuperscriptBox["\[CapitalOmega]", "2"]}], "-", "d2"}], 
+       RowBox[{"4", "*", "c2"}]]], "]"}]}]}], ";"}]}], "Input",
+ CellLabel->
+  "In[104]:=",ExpressionUUID->"9a5cf24a-3ef6-4274-95fc-196bc83fcc54"],
 
 Cell["\<\
 g1 := a*c1*Sin[k1*a]/(m1*\[CapitalOmega]);
@@ -82,48 +77,45 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"g1", ":=", 
    RowBox[{
-    RowBox[{"a", "/", 
-     RowBox[{"(", 
-      RowBox[{"2", "*", "\[CapitalOmega]"}], ")"}]}], "*", 
-    RowBox[{"Sqrt", "[", 
+    FractionBox["a", 
+     RowBox[{"2", "*", "\[CapitalOmega]"}]], "*", 
+    SqrtBox[
      RowBox[{
       RowBox[{"(", 
        RowBox[{
         SuperscriptBox["\[CapitalOmega]", "2"], "-", 
-        RowBox[{"d1", "/", "m1"}]}], ")"}], "*", 
+        FractionBox["d1", "m1"]}], ")"}], "*", 
       RowBox[{"(", 
        RowBox[{
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{"4", "*", "c1"}], "+", "d1"}], ")"}], "/", "m1"}], "-", 
-        SuperscriptBox["\[CapitalOmega]", "2"]}], ")"}]}], "]"}]}]}], 
+        FractionBox[
+         RowBox[{
+          RowBox[{"4", "*", "c1"}], "+", "d1"}], "m1"], "-", 
+        SuperscriptBox["\[CapitalOmega]", "2"]}], ")"}]}]]}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"g2", ":=", 
    RowBox[{
-    RowBox[{"a", "/", 
-     RowBox[{"(", 
-      RowBox[{"2", "*", "\[CapitalOmega]"}], ")"}]}], "*", 
-    RowBox[{"Sqrt", "[", 
+    FractionBox["a", 
+     RowBox[{"2", "*", "\[CapitalOmega]"}]], "*", 
+    SqrtBox[
      RowBox[{
       RowBox[{"(", 
        RowBox[{
         SuperscriptBox["\[CapitalOmega]", "2"], "-", 
-        RowBox[{"d2", "/", "m2"}]}], ")"}], "*", 
+        FractionBox["d2", "m2"]}], ")"}], "*", 
       RowBox[{"(", 
        RowBox[{
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{"4", "*", "c2"}], "+", "d2"}], ")"}], "/", "m2"}], "-", 
-        SuperscriptBox["\[CapitalOmega]", "2"]}], ")"}]}], "]"}]}]}], 
+        FractionBox[
+         RowBox[{
+          RowBox[{"4", "*", "c2"}], "+", "d2"}], "m2"], "-", 
+        SuperscriptBox["\[CapitalOmega]", "2"]}], ")"}]}]]}]}], 
   ";"}]}], "Input",
- CellLabel->"In[13]:=",ExpressionUUID->"b7373df1-cf31-4c23-b1c6-abf940ed40f2"],
+ CellLabel->
+  "In[106]:=",ExpressionUUID->"b7373df1-cf31-4c23-b1c6-abf940ed40f2"],
 
 Cell[BoxData[
- RowBox[{"Plot", "[", 
-  RowBox[{
+ RowBox[{
+  RowBox[{"T", ":=", 
    RowBox[{
     FractionBox[
      RowBox[{"m2", "*", "g2"}], 
@@ -158,72 +150,57 @@ Cell[BoxData[
              RowBox[{
               RowBox[{"(", 
                RowBox[{"c12", "-", "c1"}], ")"}], "/", "c1"}]}]}], ")"}]}]}]],
-        "]"}], ")"}], "2"]}], ",", 
+        "]"}], ")"}], "2"]}]}], ";"}]], "Input",
+ CellLabel->
+  "In[108]:=",ExpressionUUID->"c372c491-6ade-45cd-a024-e9a167d73f16"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{"T", ",", 
    RowBox[{"{", 
     RowBox[{"c12", ",", 
      RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
-   RowBox[{"PlotRange", "->", "Full"}]}], "]"}]], "Input",
- CellLabel->"In[15]:=",ExpressionUUID->"1dc3ab30-2b3d-46a0-9a3a-fc40ef4cd361"],
+   RowBox[{"PlotRange", "->", "Full"}], ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<c12\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", "->", 
+    "\"\<Interface stiffness dependence of the transmission \
+coefficient\>\""}]}], "]"}]], "Input",
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"1dc3ab30-2b3d-46a0-9a3a-fc40ef4cd361"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"c12", ":=", "3.0"}], ";"}]], "Input",
- CellLabel->"In[16]:=",ExpressionUUID->"80657bc1-c856-4d9d-9c6e-9d8d8e355044"],
+Cell["Transmission coefficient with given interface stiffness:", \
+"Text",ExpressionUUID->"fa198633-42a8-49ad-8170-a8e1386ba334"],
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{
-  FractionBox[
-   RowBox[{"m2", "*", "g2"}], 
-   RowBox[{"m1", "*", "g1"}]], "*", 
-  SuperscriptBox[
-   RowBox[{"(", 
-    RowBox[{"Abs", "[", 
-     FractionBox[
-      RowBox[{"2", "*", "\[ImaginaryI]", "*", "c12", "*", 
-       RowBox[{"Sin", "[", 
-        RowBox[{"k1", "*", "a"}], "]"}]}], 
-      RowBox[{
-       RowBox[{"c12", "*", 
-        RowBox[{"(", 
-         RowBox[{"1", "-", 
-          SuperscriptBox["\[ExponentialE]", 
-           RowBox[{
-            RowBox[{"-", "\[ImaginaryI]"}], "*", "k1", "*", "a"}]]}], ")"}]}],
-        "+", 
-       RowBox[{"c2", "*", 
-        RowBox[{"(", 
-         RowBox[{
-          SuperscriptBox["\[ExponentialE]", 
-           RowBox[{"\[ImaginaryI]", "*", "k2", "*", "a"}]], "-", "1"}], ")"}],
-         "*", 
-        RowBox[{"(", 
-         RowBox[{"1", "+", 
-          RowBox[{
-           SuperscriptBox["\[ExponentialE]", 
-            RowBox[{
-             RowBox[{"-", "\[ImaginaryI]"}], "*", "k1", "*", "a"}]], "*", 
-           RowBox[{
-            RowBox[{"(", 
-             RowBox[{"c12", "-", "c1"}], ")"}], "/", "c1"}]}]}], ")"}]}]}]], 
-     "]"}], ")"}], "2"]}]], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"1a1741c9-5cbb-4861-9ccf-60bab87ae76b"],
+  RowBox[{"c12", ":=", "3.0"}], ";"}], "\[IndentingNewLine]", "T"}], "Input",
+ CellLabel->
+  "In[110]:=",ExpressionUUID->"80657bc1-c856-4d9d-9c6e-9d8d8e355044"],
+
+Cell["Wave numbers and group velocities:", \
+"Text",ExpressionUUID->"7fa05fa7-0f8e-465f-abd1-c71a30f3634d"],
 
 Cell[BoxData["k1"], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"50237599-4bbc-4a80-a3c8-81a7594f8137"],
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"50237599-4bbc-4a80-a3c8-81a7594f8137"],
 
 Cell[BoxData["k2"], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"c66f02f4-d50b-4bb9-ac94-c4e5d3187f04"],
+ CellLabel->
+  "In[113]:=",ExpressionUUID->"c66f02f4-d50b-4bb9-ac94-c4e5d3187f04"],
 
 Cell[BoxData["g1"], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"5c6b304b-3ff5-4550-8340-ccecf79ca927"],
+ CellLabel->
+  "In[114]:=",ExpressionUUID->"5c6b304b-3ff5-4550-8340-ccecf79ca927"],
 
 Cell[BoxData["g2"], "Input",
- CellLabel->
-  "In[21]:=",ExpressionUUID->"0fd12293-1afb-49ac-858f-e7a82bf92d62"]
+ CellLabel->"In[115]:=",ExpressionUUID->"0fd12293-1afb-49ac-858f-e7a82bf92d62"]
 }, Open  ]]
 },
-WindowSize->{1131, 718},
-WindowMargins->{{77, Automatic}, {Automatic, 43}},
+WindowSize->{922, 718},
+WindowMargins->{{115, Automatic}, {Automatic, 20}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 CellEpilog:>SelectionMove[
   NextCell[CellStyle -> "Input"], All, Cell],

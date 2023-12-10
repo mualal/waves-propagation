@@ -17,7 +17,6 @@ u_{n,m}=
 m_i\Omega^2=4c\left(\sin^2{\frac{k_i^xa}{2}}+\sin^2{\frac{k_i^ya}{2}}\right)
 \eeq
 
-По условию волна падает под углом $\gamma$ (угол к нормали интерфейса), поэтому
 
 Уравнения движения для частиц интерфейса:
 \beq
@@ -27,6 +26,7 @@ m_i\Omega^2=4c\left(\sin^2{\frac{k_i^xa}{2}}+\sin^2{\frac{k_i^ya}{2}}\right)
 \end{cases}
 \eeq
 
+Получаем:
 \beq
 \frac{A_T}{A_I}=\frac{e^{\im k_1^xa}-e^{-\im k_1^xa}}{e^{\im k_2^xa}-e^{-\im k_1^xa}}\cdot\frac{e^{\im k_2^y am}}{e^{\im k_1^y am}}
 \eeq
@@ -42,29 +42,6 @@ g_i=\sqrt{\left(g_i^x\right)^2+\left(g_i^y\right)^2}
 $$
 
 %Из геометрии $k_1^y=k_2^y$.
-
-\section{Сравнение численных результатов с аналитическим решением (для цепочек).}
-
-Аналитическое решение для отношения амплитуд проходящей и падающей волн:
-\beq
-\frac{A_T}{A_I}=\frac{2\im c_{12}\sin{k_1}}{c_{12}\left(1-e^{-\im k_1}\right)+c_2\left(e^{\im k_2}-1\right)\left(1+e^{-\im k_1}\left(c_{12}-c_1\right)/c_1\right)}
-\eeq
-
-Аналитическое решение для коэффициента прохождения:
-\beq
-T=\frac{m_2g_2\left|A_T\right|^2}{m_1g_1\left|A_I\right|^2}=\frac{m_2g_2}{m_1g_1}\left(\frac{2\im c_{12}\sin{k_1}}{c_{12}\left(1-e^{-\im k_1}\right)+c_2\left(e^{\im k_2}-1\right)\left(1+e^{-\im k_1}\left(c_{12}-c_1\right)/c_1\right)}\right)^2,
-\eeq
-где
-$$
-k_1=\frac{2}{a}\arcsin{\sqrt{\frac{m_1\Omega^2-d_1}{4c_1}}};\,\,\,k_2=\frac{2}{a}\arcsin{\sqrt{\frac{m_2\Omega^2-d_2}{4c_2}}};
-$$
-$$
-g_1=\frac{a}{2\Omega}\sqrt{\left(\Omega^2-\frac{d_1}{m_1}\right)\left(\frac{4c_1+d_1}{m_1}-\Omega^2\right)};\,\,\,g_2=\frac{a}{2\Omega}\sqrt{\left(\Omega^2-\frac{d_2}{m_2}\right)\left(\frac{4c_2+d_2}{m_2}-\Omega^2\right)}.
-$$
-
-График зависимости коэффициента прохождения от жёсткости интерфейса $c_{12}$ построен в \href{https://github.com/mualal/waves-propagation/blob/master/mathematica/chain-chain-interface.nb}{блокноте Wolfram Mathematica}:
-
-Далее \href{https://github.com/mualal/waves-propagation/blob/master/python/chain-chain-interface.ipynb}{в блокноте Jupyter} проведено сравнение численных результатов с аналитическим решением при $c_{12}\geqslant0$:
 
 
 
