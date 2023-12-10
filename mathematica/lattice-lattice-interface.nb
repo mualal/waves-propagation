@@ -155,7 +155,7 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"m2", ":=", "0.5"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"c", ":=", "1.0"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"c", ":=", "0.75"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"a", ":=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -165,8 +165,8 @@ Cell[BoxData[{
  CellLabel->"In[3]:=",ExpressionUUID->"d099bdf6-edb9-407f-baaf-2b8c3804cee8"],
 
 Cell["\<\
-Find wave number (in lattice 1) that corresponds to given frequency \
-\[CapitalOmega] and angle \[Gamma].\
+Find wave vector components (in lattice 1) that corresponds to given \
+frequency \[CapitalOmega] and angle \[Gamma].\
 \>", "Text",ExpressionUUID->"221134c5-8d02-4902-a80d-a1fa28cad184"],
 
 Cell[BoxData[{
@@ -207,8 +207,10 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", "k1"}], "Input",
  CellLabel->"In[9]:=",ExpressionUUID->"4f115f28-0183-4854-9755-07500b7a2bb9"],
 
-Cell["Find wave number (in lattice 2) using Snell\[CloseCurlyQuote]s law.", \
-"Text",ExpressionUUID->"9dacaf98-faa6-4e49-978a-ee55add01770"],
+Cell["\<\
+Find wave vector components (in lattice 2) and refraction angle using Snell\
+\[CloseCurlyQuote]s law.\
+\>", "Text",ExpressionUUID->"9dacaf98-faa6-4e49-978a-ee55add01770"],
 
 Cell[BoxData[{
  RowBox[{
@@ -248,54 +250,80 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", "k2"}], "Input",
  CellLabel->"In[13]:=",ExpressionUUID->"258fe13d-115b-433b-aa11-d4b4c24b28ea"],
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"g1x", ":=", 
-   RowBox[{
-    FractionBox[
-     RowBox[{"a", "*", "c"}], 
-     RowBox[{"\[CapitalOmega]", "*", "m1"}]], "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"k1x", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"g1y", ":=", 
-   RowBox[{
-    FractionBox[
-     RowBox[{"a", "*", "c"}], 
-     RowBox[{"\[CapitalOmega]", "*", "m1"}]], "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"k1y", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"g1", ":=", 
-   RowBox[{"Sqrt", "[", 
-    RowBox[{
-     SuperscriptBox["g1x", "2"], "+", 
-     SuperscriptBox["g1y", "2"]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"g2x", ":=", 
-   RowBox[{
-    FractionBox[
-     RowBox[{"a", "*", "c"}], 
-     RowBox[{"\[CapitalOmega]", "*", "m2"}]], "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"k2x", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"g2y", ":=", 
-   RowBox[{
-    FractionBox[
-     RowBox[{"a", "*", "c"}], 
-     RowBox[{"\[CapitalOmega]", "*", "m2"}]], "*", 
-    RowBox[{"Sin", "[", 
-     RowBox[{"k2y", "*", "a"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"g2", ":=", 
-   RowBox[{"Sqrt", "[", 
-    RowBox[{
-     SuperscriptBox["g2x", "2"], "+", 
-     SuperscriptBox["g2y", "2"]}], "]"}]}], ";"}]}], "Input",
- CellLabel->"In[18]:=",ExpressionUUID->"0c460741-521d-41b9-ae17-2f4f77847665"],
+Cell["Group velocities:", \
+"Text",ExpressionUUID->"def1a3e7-d212-4f78-b755-cfdaa31d3714"],
 
 Cell[BoxData[{
+ RowBox[{
+  RowBox[{"g1", ":=", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       SqrtBox[
+        FractionBox["c", "m1"]], " ", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"k", "*", 
+             RowBox[{"Cos", "[", "\[Gamma]", "]"}], "*", "a"}], "2"], "]"}], 
+          "2"], "+", 
+         SuperscriptBox[
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"k", "*", 
+             RowBox[{"Sin", "[", "\[Gamma]", "]"}], "*", "a"}], "2"], "]"}], 
+          "2"]}]]}], ",", "k"}], "]"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{"k", "->", "k1"}], "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g1x", ":=", 
+   RowBox[{"g1", "*", 
+    RowBox[{"Cos", "[", "\[Gamma]", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g1y", ":=", 
+   RowBox[{"g1", "*", 
+    RowBox[{"Sin", "[", "\[Gamma]", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2", ":=", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"2", " ", 
+       SqrtBox[
+        FractionBox["c", "m2"]], " ", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"k", "*", 
+             RowBox[{"Cos", "[", "\[Zeta]", "]"}], "*", "a"}], "2"], "]"}], 
+          "2"], "+", 
+         SuperscriptBox[
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"k", "*", 
+             RowBox[{"Sin", "[", "\[Zeta]", "]"}], "*", "a"}], "2"], "]"}], 
+          "2"]}]]}], ",", "k"}], "]"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{"k", "->", "k2"}], "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2x", ":=", 
+   RowBox[{"g2", "*", 
+    RowBox[{"Cos", "[", "\[Zeta]", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g2y", ":=", 
+   RowBox[{"g2", "*", 
+    RowBox[{"Sin", "[", "\[Zeta]", "]"}]}]}], ";"}]}], "Input",
+ CellLabel->"In[18]:=",ExpressionUUID->"0c460741-521d-41b9-ae17-2f4f77847665"],
+
+Cell["Transmission coefficient:", \
+"Text",ExpressionUUID->"c9875944-c5ca-4471-8613-54ad7897c6b1"],
+
+Cell[BoxData[
  RowBox[{
   RowBox[{"T", ":=", 
    RowBox[{
@@ -318,13 +346,58 @@ Cell[BoxData[{
          SuperscriptBox["\[ExponentialE]", 
           RowBox[{
            RowBox[{"-", "\[ImaginaryI]"}], "*", "k1x", "*", "a"}]]}]], "]"}], 
-      ")"}], "2"]}]}], ";"}], "\[IndentingNewLine]", "T"}], "Input",
+      ")"}], "2"]}]}], ";"}]], "Input",
+ CellLabel->"In[24]:=",ExpressionUUID->"0e942859-b694-4a8e-9ecc-8440372d21f1"],
+
+Cell["Transmission coefficient with given incidence angle:", \
+"Text",ExpressionUUID->"1499303d-d29e-4b9b-8fa1-ff7427c35390"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Gamma]", ":=", 
+   RowBox[{"\[Pi]", "/", "4.2"}]}], 
+  ";"}], "\[IndentingNewLine]", "T"}], "Input",
+ CellLabel->"In[25]:=",ExpressionUUID->"2fc0b12b-b8c3-4dba-8b79-46ea027ece0c"],
+
+Cell["Incidence angle dependence of the transmission coefficient:", \
+"Text",ExpressionUUID->"60f069b1-d285-485b-a45b-8cc052bca879"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{"T", ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Gamma]", ",", "0", ",", 
+     RowBox[{"\[Pi]", "/", "4"}]}], "}"}], ",", 
+   RowBox[{"Ticks", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        FractionBox["\[Pi]", "16"], ",", 
+        FractionBox["\[Pi]", "8"], ",", 
+        FractionBox["\[Pi]", "7"], ",", 
+        FractionBox["\[Pi]", "6"], ",", 
+        FractionBox["\[Pi]", "5"], ",", 
+        FractionBox["\[Pi]", "4"], ",", 
+        FractionBox["\[Pi]", "3"]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0.2", ",", "0.4", ",", "0.6", ",", "0.8", ",", "1.0"}], 
+       "}"}]}], "}"}]}], ",", 
+   RowBox[{"PlotRange", "->", "Full"}], ",", 
+   RowBox[{"GridLines", "->", "Full"}], ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\[Gamma]\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
+   RowBox[{
+   "PlotLabel", "->", 
+    "\"\<Incidence angle dependence of the transmission coefficient\>\""}]}], 
+  "]"}]], "Input",
  CellLabel->
-  "In[24]:=",ExpressionUUID->"0e942859-b694-4a8e-9ecc-8440372d21f1"]
+  "In[27]:=",ExpressionUUID->"ea9dda19-9eff-4e59-a33b-b3fcbd235a2a"]
 }, Open  ]]
 },
-WindowSize->{979, 718},
-WindowMargins->{{161, Automatic}, {Automatic, 37}},
+WindowSize->{1267, 718},
+WindowMargins->{{Automatic, 17}, {Automatic, 35}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TaggingRules-><|"TryRealOnly" -> False|>,
 CellEpilog:>SelectionMove[
