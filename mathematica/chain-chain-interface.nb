@@ -111,6 +111,9 @@ Cell[BoxData[{
   ";"}]}], "Input",
  CellLabel->"In[13]:=",ExpressionUUID->"b7373df1-cf31-4c23-b1c6-abf940ed40f2"],
 
+Cell["Transmission coefficient:", \
+"Text",ExpressionUUID->"d10f982a-ec73-405b-8488-2078e4bfdbb0"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"T", ":=", 
@@ -151,20 +154,47 @@ Cell[BoxData[
         "]"}], ")"}], "2"]}]}], ";"}]], "Input",
  CellLabel->"In[15]:=",ExpressionUUID->"c372c491-6ade-45cd-a024-e9a167d73f16"],
 
-Cell[BoxData[
- RowBox[{"Plot", "[", 
-  RowBox[{"T", ",", 
-   RowBox[{"{", 
-    RowBox[{"c12", ",", 
-     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
-   RowBox[{"PlotRange", "->", "Full"}], ",", 
-   RowBox[{"AxesLabel", "->", 
-    RowBox[{"{", 
-     RowBox[{"\"\<c12\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
-   RowBox[{
-   "PlotLabel", "->", 
-    "\"\<Interface stiffness dependence of the transmission \
-coefficient\>\""}]}], "]"}]], "Input",
+Cell["\<\
+Interface stiffness dependence of the transmission coefficient:\
+\>", "Text",ExpressionUUID->"3bf7f1d1-524d-44f5-8003-0e5dd52f455c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p1", ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"T", ",", 
+     RowBox[{"{", 
+      RowBox[{"c12", ",", 
+       RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+     RowBox[{"PlotRange", "->", "Full"}], ",", 
+     RowBox[{"AxesLabel", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<c12\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
+     RowBox[{
+     "PlotLabel", "->", 
+      "\"\<Interface stiffness dependence of the transmission \
+coefficient\>\""}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p2", ":=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Tooltip", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"c12", ",", "T"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"c12", ",", "T"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"c12", ",", 
+         RowBox[{"-", "5"}], ",", "5", ",", "0.5"}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotMarkers", "->", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", "5"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2"}], "]"}]}], "Input",
  CellLabel->"In[16]:=",ExpressionUUID->"1dc3ab30-2b3d-46a0-9a3a-fc40ef4cd361"],
 
 Cell["Transmission coefficient with given interface stiffness:", \
@@ -173,27 +203,27 @@ Cell["Transmission coefficient with given interface stiffness:", \
 Cell[BoxData[{
  RowBox[{
   RowBox[{"c12", ":=", "3.0"}], ";"}], "\[IndentingNewLine]", "T"}], "Input",
- CellLabel->"In[17]:=",ExpressionUUID->"80657bc1-c856-4d9d-9c6e-9d8d8e355044"],
+ CellLabel->"In[19]:=",ExpressionUUID->"80657bc1-c856-4d9d-9c6e-9d8d8e355044"],
 
 Cell["Wave numbers and group velocities:", \
 "Text",ExpressionUUID->"7fa05fa7-0f8e-465f-abd1-c71a30f3634d"],
 
 Cell[BoxData["k1"], "Input",
- CellLabel->"In[19]:=",ExpressionUUID->"50237599-4bbc-4a80-a3c8-81a7594f8137"],
+ CellLabel->"In[21]:=",ExpressionUUID->"50237599-4bbc-4a80-a3c8-81a7594f8137"],
 
 Cell[BoxData["k2"], "Input",
- CellLabel->"In[20]:=",ExpressionUUID->"c66f02f4-d50b-4bb9-ac94-c4e5d3187f04"],
+ CellLabel->"In[22]:=",ExpressionUUID->"c66f02f4-d50b-4bb9-ac94-c4e5d3187f04"],
 
 Cell[BoxData["g1"], "Input",
- CellLabel->"In[21]:=",ExpressionUUID->"5c6b304b-3ff5-4550-8340-ccecf79ca927"],
+ CellLabel->"In[23]:=",ExpressionUUID->"5c6b304b-3ff5-4550-8340-ccecf79ca927"],
 
 Cell[BoxData["g2"], "Input",
  CellLabel->
-  "In[22]:=",ExpressionUUID->"0fd12293-1afb-49ac-858f-e7a82bf92d62"]
+  "In[24]:=",ExpressionUUID->"0fd12293-1afb-49ac-858f-e7a82bf92d62"]
 }, Open  ]]
 },
 WindowSize->{922, 718},
-WindowMargins->{{115, Automatic}, {Automatic, 20}},
+WindowMargins->{{Automatic, 172}, {Automatic, 25}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 CellEpilog:>SelectionMove[
   NextCell[CellStyle -> "Input"], All, Cell],

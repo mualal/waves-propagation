@@ -349,6 +349,71 @@ Cell[BoxData[
       ")"}], "2"]}]}], ";"}]], "Input",
  CellLabel->"In[24]:=",ExpressionUUID->"0e942859-b694-4a8e-9ecc-8440372d21f1"],
 
+Cell["Incidence angle dependence of the transmission coefficient:", \
+"Text",ExpressionUUID->"60f069b1-d285-485b-a45b-8cc052bca879"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p1", ":=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{"T", ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Gamma]", ",", "0", ",", 
+       RowBox[{"\[Pi]", "/", "4"}]}], "}"}], ",", 
+     RowBox[{"Ticks", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          FractionBox["\[Pi]", "16"], ",", 
+          FractionBox["\[Pi]", "8"], ",", 
+          FractionBox["\[Pi]", "7"], ",", 
+          FractionBox["\[Pi]", "6"], ",", 
+          FractionBox["\[Pi]", "5"], ",", 
+          FractionBox["\[Pi]", "4"], ",", 
+          FractionBox["\[Pi]", "3"]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0.2", ",", "0.4", ",", "0.6", ",", "0.8", ",", "1.0"}], 
+         "}"}]}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "->", "Full"}], ",", 
+     RowBox[{"GridLines", "->", "Full"}], ",", 
+     RowBox[{"AxesLabel", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\[Gamma]\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
+     RowBox[{
+     "PlotLabel", "->", 
+      "\"\<Incidence angle dependence of the transmission \
+coefficient\>\""}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p2", ":=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Tooltip", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\[Gamma]", ",", "T"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"StringForm", "[", 
+            RowBox[{"\"\<``\.ba\>\"", ",", 
+             RowBox[{"Round", "[", 
+              RowBox[{"N", "[", 
+               RowBox[{"\[Gamma]", "/", "Degree"}], "]"}], "]"}]}], "]"}], 
+           ",", "T"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\[Gamma]", ",", "0", ",", 
+         RowBox[{"\[Pi]", "/", "4.05"}], ",", 
+         RowBox[{"\[Pi]", "/", "180"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotMarkers", "->", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", "5"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2"}], "]"}]}], "Input",
+ CellLabel->"In[25]:=",ExpressionUUID->"ea9dda19-9eff-4e59-a33b-b3fcbd235a2a"],
+
 Cell["Transmission coefficient with given incidence angle:", \
 "Text",ExpressionUUID->"1499303d-d29e-4b9b-8fa1-ff7427c35390"],
 
@@ -357,47 +422,12 @@ Cell[BoxData[{
   RowBox[{"\[Gamma]", ":=", 
    RowBox[{"\[Pi]", "/", "4.2"}]}], 
   ";"}], "\[IndentingNewLine]", "T"}], "Input",
- CellLabel->"In[25]:=",ExpressionUUID->"2fc0b12b-b8c3-4dba-8b79-46ea027ece0c"],
-
-Cell["Incidence angle dependence of the transmission coefficient:", \
-"Text",ExpressionUUID->"60f069b1-d285-485b-a45b-8cc052bca879"],
-
-Cell[BoxData[
- RowBox[{"Plot", "[", 
-  RowBox[{"T", ",", 
-   RowBox[{"{", 
-    RowBox[{"\[Gamma]", ",", "0", ",", 
-     RowBox[{"\[Pi]", "/", "4"}]}], "}"}], ",", 
-   RowBox[{"Ticks", "->", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{
-        FractionBox["\[Pi]", "16"], ",", 
-        FractionBox["\[Pi]", "8"], ",", 
-        FractionBox["\[Pi]", "7"], ",", 
-        FractionBox["\[Pi]", "6"], ",", 
-        FractionBox["\[Pi]", "5"], ",", 
-        FractionBox["\[Pi]", "4"], ",", 
-        FractionBox["\[Pi]", "3"]}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0.2", ",", "0.4", ",", "0.6", ",", "0.8", ",", "1.0"}], 
-       "}"}]}], "}"}]}], ",", 
-   RowBox[{"PlotRange", "->", "Full"}], ",", 
-   RowBox[{"GridLines", "->", "Full"}], ",", 
-   RowBox[{"AxesLabel", "->", 
-    RowBox[{"{", 
-     RowBox[{"\"\<\[Gamma]\>\"", ",", " ", "\"\<T\>\""}], "}"}]}], ",", " ", 
-   RowBox[{
-   "PlotLabel", "->", 
-    "\"\<Incidence angle dependence of the transmission coefficient\>\""}]}], 
-  "]"}]], "Input",
  CellLabel->
-  "In[27]:=",ExpressionUUID->"ea9dda19-9eff-4e59-a33b-b3fcbd235a2a"]
+  "In[28]:=",ExpressionUUID->"2fc0b12b-b8c3-4dba-8b79-46ea027ece0c"]
 }, Open  ]]
 },
-WindowSize->{1267, 718},
-WindowMargins->{{Automatic, 17}, {Automatic, 35}},
+WindowSize->{1267, 711},
+WindowMargins->{{Automatic, 33}, {Automatic, 24}},
 PrivateNotebookOptions->{"FileOutlineCache"->False},
 TaggingRules-><|"TryRealOnly" -> False|>,
 CellEpilog:>SelectionMove[
