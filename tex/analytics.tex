@@ -41,6 +41,68 @@ $$
 
 %Из геометрии $k_1^y=k_2^y$.
 
+\section{Сохранение потока в однородной решётке}
 
+Уравнение движения для частицы $\left(n,m\right)$:
+\beq
+\label{eqn-motion}
+M_{n,m}\dot{v}_{n,m}=F_{n+\frac{1}{2},m}-F_{n-\frac{1}{2},m}+F_{n,m+\frac{1}{2}}-F_{n,m-\frac{1}{2}},
+\eeq
+где
+$$
+F_{n+\frac{1}{2},m}=C_{n+\frac{1}{2},m}\varepsilon_{n+\frac{1}{2},m}\hspace{2cm}\varepsilon_{n+\frac{1}{2},m}=u_{n+1,m}-u_{n,m}
+$$
+$$
+F_{n,m+\frac{1}{2}}=C_{n,m+\frac{1}{2}}\varepsilon_{n,m+\frac{1}{2}}\hspace{2cm}\varepsilon_{n,m+\frac{1}{2}}=u_{n,m+1}-u_{n,m}
+$$
+
+Выражение для потока:
+\beq
+\uline{h}_{n+\frac{1}{2},m+\frac{1}{2}}=-\frac{a\uline{e_1}}{2}F_{n+\frac{1}{2},m}\left(v_{n+1,m}+v_{n,m}\right)-\frac{a\uline{e_2}}{2}F_{n,m+\frac{1}{2}}\left(v_{n,m+1}+v_{n,m}\right)
+\eeq
+
+Производная потока:
+\beq
+\label{flux-der}
+\begin{aligned}
+\uline{\dot{h}}_{n+\frac{1}{2},m+\frac{1}{2}}=
+&-\frac{a\uline{e_1}}{2}\dot{F}_{n+\frac{1}{2},m}\left(v_{n+1,m}+v_{n,m}\right)-\\[1ex]
+&-\frac{a\uline{e_1}}{2}F_{n+\frac{1}{2},m}\left(\dot{v}_{n+1,m}+\dot{v}_{n,m}\right)-\\[1ex]
+&-\frac{a\uline{e_2}}{2}\dot{F}_{n,m+\frac{1}{2}}\left(v_{n,m+1}+v_{n,m}\right)-\\[1ex]
+&-\frac{a\uline{e_2}}{2}F_{n,m+\frac{1}{2}}\left(\dot{v}_{n,m+1}+\dot{v}_{n,m}\right).
+\end{aligned}
+\eeq
+
+Из уравнения движения \eqref{eqn-motion}:
+\beq
+\label{vels}
+\begin{aligned}
+\dot{v}_{n,m}&=\frac{F_{n+\frac{1}{2},m}}{M_{n,m}}-\frac{F_{n-\frac{1}{2},m}}{M_{n,m}}+\frac{F_{n,m+\frac{1}{2}}}{M_{n,m}}-\frac{F_{n,m-\frac{1}{2}}}{M_{n,m}}\\[1.5ex]
+\dot{v}_{n+1,m}&=\frac{F_{n+\frac{3}{2},m}}{M_{n+1,m}}-\frac{F_{n+\frac{1}{2},m}}{M_{n+1,m}}+\frac{F_{n+1,m+\frac{1}{2}}}{M_{n+1,m}}-\frac{F_{n+1,m-\frac{1}{2}}}{M_{n+1,m}}\\[1.5ex]
+\dot{v}_{n,m+1}&=\frac{F_{n+\frac{1}{2},m+1}}{M_{n,m+1}}-\frac{F_{n-\frac{1}{2},m+1}}{M_{n,m+1}}+\frac{F_{n,m+\frac{3}{2}}}{M_{n,m+1}}-\frac{F_{n,m+\frac{1}{2}}}{M_{n,m+1}}
+\end{aligned}
+\eeq
+
+И знаем, что
+\beq
+\label{force}
+\begin{aligned}
+\dot{F}_{n+\frac{1}{2},m}&=C_{n+\frac{1}{2},m}\left(v_{n+1,m}-v_{n,m}\right)\\[1.5ex]
+\dot{F}_{n,m+\frac{1}{2}}&=C_{n,m+\frac{1}{2}}\left(v_{n,m+1}-v_{n,m}\right)
+\end{aligned}
+\eeq
+
+Подставляем \eqref{vels} и \eqref{force} в выражение \eqref{flux-der}:
+\beq
+\label{flux-der-2}
+\begin{aligned}
+\uline{\dot{h}}_{n+\frac{1}{2},m+\frac{1}{2}}=&-\frac{a\uline{e_1}}{2}C_{n+\frac{1}{2},m}\left(v_{n+1,m}^2-v_{n,m}^2\right)-\\[1.5ex]
+&-\frac{a\uline{e_1}}{2}F_{n+\frac{1}{2},m}\left(\frac{F_{n+\frac{1}{2},m}}{M_{n,m}}-\frac{F_{n+\frac{1}{2},m}}{M_{n+1,m}}+\frac{F_{n+\frac{3}{2},m}}{M_{n+1,m}}-\frac{F_{n-\frac{1}{2},m}}{M_{n,m}}\right.+\\[1.5ex]
+&\hspace{3cm}+\left.\frac{F_{n,m+\frac{1}{2}}}{M_{n,m}}-\frac{F_{n,m-\frac{1}{2}}}{M_{n,m}}+\frac{F_{n+1,m+\frac{1}{2}}}{M_{n+1,m}}-\frac{F_{n+1,m-\frac{1}{2}}}{M_{n+1,m}}\right)-\\[1.5ex]
+&-\frac{a\uline{e_2}}{2}C_{n,m+\frac{1}{2}}\left(v_{n,m+1}^2-v_{n,m}^2\right)-\\[1.5ex]
+&-\frac{a\uline{e_2}}{2}F_{n,m+\frac{1}{2}}\left(\frac{F_{n,m+\frac{1}{2}}}{M_{n,m}}-\frac{F_{n,m+\frac{1}{2}}}{M_{n,m+1}}+\frac{F_{n,m+\frac{3}{2}}}{M_{n,m+1}}-\frac{F_{n,m-\frac{1}{2}}}{M_{n,m}}\right.+\\[1.5ex]
+&\hspace{3cm}+\left.\frac{F_{n+\frac{1}{2},m}}{M_{n,m}}-\frac{F_{n-\frac{1}{2},m}}{M_{n,m}}+\frac{F_{n+\frac{1}{2},m+1}}{M_{n,m+1}}-\frac{F_{n-\frac{1}{2},m+1}}{M_{n,m+1}}\right)
+\end{aligned}
+\eeq
 
 \end{document}
