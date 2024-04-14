@@ -105,4 +105,41 @@ $$
 \end{aligned}
 \eeq
 
+Для неоднородной решётки:
+\beq
+M_{n,m}=
+\begin{cases}
+m_1, \hspace{0.5cm} n<0,\\
+m_2, \hspace{0.5cm} n\geqslant0,
+\end{cases}
+\hspace{1cm}
+C_{n+\frac{1}{2},m}=
+\begin{cases}
+c_1, \hspace{0.5cm} n<-1,\\
+c_{12}, \hspace{0.5cm} n=-1,\\
+c_2, \hspace{0.5cm} n\geqslant0,
+\end{cases}
+\eeq
+
+Суммируя по всем частицам, получаем:
+\beq
+\begin{aligned}
+\dot{h}=-\frac{a\uline{e_1}}{2}&\left(\sum_{m=-\infty}^{+\infty}{\left[\left(c_{12}-c_2\right)v_{0,m}^2+\left(c_1-c_{12}\right)v_{-1,m}^2\right]}\right.+\\[1.5ex]
+&\left.+\sum_{m=-\infty}^{+\infty}{\left(\frac{F_{-\frac{1}{2},m}^2}{m_2}-\frac{F_{-\frac{1}{2},m}^2}{m_1}\right)}\right.+\\[1.5ex]
+&\left.+\sum_{m,n}{\left[F_{n+\frac{1}{2},m}\left(\frac{F_{n,m+\frac{1}{2}}}{M_{n,m}}-\frac{F_{n,m-\frac{1}{2}}}{M_{n,m}}+\frac{F_{n+1,m+\frac{1}{2}}}{M_{n+1,m}}-\frac{F_{n+1,m-\frac{1}{2}}}{M_{n+1,m}}\right)\right]}\right)-\\[1.5ex]
+&\hspace{-1.1cm}-\frac{a\uline{e_2}}{2}\left(0+0\right.+\\[1.5ex]
+&\left.+\sum_{m,n}{\left[F_{n,m+\frac{1}{2}}\left(\frac{F_{n+\frac{1}{2},m}}{M_{n,m}}-\frac{F_{n-\frac{1}{2},m}}{M_{n,m}}+\frac{F_{n+\frac{1}{2},m+1}}{M_{n,m+1}}-\frac{F_{n-\frac{1}{2},m+1}}{M_{n,m+1}}\right)\right]}\right)
+\end{aligned}
+\eeq
+
+Преобразуем
+\beq
+\begin{aligned}
+\dot{h}=-\frac{a\uline{e_1}}{2}&\left(\sum_{m=-\infty}^{+\infty}{\left[\left(c_{12}-c_2\right)v_{0,m}^2+\left(c_1-c_{12}\right)v_{-1,m}^2\right]}\right.+\\[1.5ex]
+&\left.+\sum_{m=-\infty}^{+\infty}{\frac{m_1-m_2}{m_1m_2}}c_{12}^2\varepsilon_{-\frac{1}{2},m}^2\right.+\\[1.5ex]
+&\left.+\sum_{m,n}{\left[F_{n+\frac{1}{2},m}\left(\frac{F_{n,m+\frac{1}{2}}}{M_{n,m}}-\frac{F_{n,m-\frac{1}{2}}}{M_{n,m}}+\frac{F_{n+1,m+\frac{1}{2}}}{M_{n+1,m}}-\frac{F_{n+1,m-\frac{1}{2}}}{M_{n+1,m}}\right)\right]}\right)-\\[1.5ex]
+&\hspace{-1.1cm}-\frac{a\uline{e_2}}{2}\left(\sum_{m,n}{\left[F_{n,m+\frac{1}{2}}\left(\frac{F_{n+\frac{1}{2},m}}{M_{n,m}}-\frac{F_{n-\frac{1}{2},m}}{M_{n,m}}+\frac{F_{n+\frac{1}{2},m+1}}{M_{n,m+1}}-\frac{F_{n-\frac{1}{2},m+1}}{M_{n,m+1}}\right)\right]}\right)
+\end{aligned}
+\eeq
+
 \end{document}
