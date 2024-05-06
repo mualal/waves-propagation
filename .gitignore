@@ -1,2 +1,6 @@
 .DS_Store
 .texpadtmp
+*.aux
+*.log
+*.out
+*.gz
